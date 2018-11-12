@@ -42,9 +42,11 @@ App = {
     });
     App.contracts.PokemonDApp.deployed().then(function(instance) {
       inst = instance;
-      return inst.pokemonCount();
-    }).then(function(pokemonCount) {
+      return inst.pokemonCount(), inst.players[account].id;
+    }).then(function(pokemonCount, arr) {
       var all_pokemons = $("#all_pokemons");
+      var len = arr.length;
+      console.log(len);
       all_pokemons.empty();
 
       for(var i = 1; i <= pokemonCount; i++) {
@@ -52,14 +54,11 @@ App = {
           var id = pokemon[0];
           var name = pokemon[1];
           var level = pokemon[2];
-
+          
           var temp = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + level + "</td></tr>";
           all_pokemons.append(temp);
-          // console.log(name);
         });
       }
-      // $("#loader").hide();
-      // $("#content").show();
       loader.hide();
       content.show();
     }).catch(function(error) {
@@ -67,26 +66,6 @@ App = {
     });
 
   }
-  // bindEvents: function() {
-  //   $(document).on('click', '.btn-adopt', App.handleAdopt);
-  // },
-
-  // markAdopted: function(adopters, account) {
-  //   /*
-  //    * Replace me...
-  //    */
-  // },
-
-  // handleAdopt: function(event) {
-  //   event.preventDefault();
-
-  //   var petId = parseInt($(event.target).data('id'));
-
-  //   /*
-  //    * Replace me...
-  //    */
-  // }
-
 };
 
 $(function() {
