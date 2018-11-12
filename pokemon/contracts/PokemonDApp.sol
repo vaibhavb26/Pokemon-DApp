@@ -1,40 +1,45 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.4.17;
+pragma experimental ABIEncoderV2;
 
-contract PokemonDApp {
-    struct Pokemon {
+contract Pokemon {
+    struct pokemon {
         uint id;
+        uint value;
         string name;
-        uint level;
     }
-    struct owned_pokemons {
-        uint[] id;
-    }
-    mapping(uint => Pokemon) public pokemons;
-    mapping(address => owned_pokemons) players;
-    uint public pokemonCount = 0;
+    mapping (uint => pokemon) pokemons;
+    uint pokemonCount = 0;
+    // pokemons[0] = pokemon(0,1,"Squirtle"); 
+    // pokemons[1] = pokemon(1,1,"Charmander");
     function addPokemon(string _name) private {
         pokemonCount ++;
-        pokemons[pokemonCount] = Pokemon(pokemonCount, _name, 1);
+        pokemons[pokemonCount] = pokemon(pokemonCount, 1, _name);
         
     }
     constructor() public {
         addPokemon("Pikachu");
         addPokemon("Bulbasaur");
     }
-    function getArrayLength() public view returns(uint) {
-        return players[msg.sender].id.length;
+    int playerCount = 0;
+    mapping (address  => pokemon[]) pokemonMap;
+    mapping (int => address) playermap;
+    mapping (address => bool) registered;
+    function register() {
+        require(registered[msg.sender]!=true,"user already registered");
+        playerCount++;
+        playermap[playerCount] = msg.sender;
+        pokemonMap[msg.sender].push(pokemons[random(uint(2))+1]);
+        registered[msg.sender] = true;
     }
-    function catchPokemon(uint _id) public {
-        uint len = players[msg.sender].id.length;
-        bool flag = false;
-        for(uint i = 0; i < len; i++) {
-            if(players[msg.sender].id[i] == _id) {
-                flag = true;
-                break;
-            }
-        }
-        if(flag == false) {
-            players[msg.sender].id.push(_id);
-        }
+    
+    function getPokemons() returns(pokemon[]) {
+        return pokemonMap[msg.sender];
     }
+    
+    function random(uint num) returns(uint) {
+        return uint256(keccak256(block.timestamp, block.difficulty))%num;
+    }
+    
+    
+    
 }
