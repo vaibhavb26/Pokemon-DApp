@@ -42,11 +42,9 @@ App = {
     });
     App.contracts.PokemonDApp.deployed().then(function(instance) {
       inst = instance;
-      return inst.pokemonCount(), inst.players[account].id;
-    }).then(function(pokemonCount, arr) {
+      return inst.pokemonCount(); 
+    }).then(function(pokemonCount) {
       var all_pokemons = $("#all_pokemons");
-      var len = arr.length;
-      console.log(len);
       all_pokemons.empty();
 
       for(var i = 1; i <= pokemonCount; i++) {
