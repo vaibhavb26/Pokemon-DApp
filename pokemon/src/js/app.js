@@ -30,14 +30,14 @@ App = {
 
   render: function() {
     var inst;
-    $("#loader").hide();
-    $("#content").show();
-    // loader.hide();
-    // content.show();
+    var loader = $("#loader");
+    var content = $("#content");
+    loader.show();
+    content.hide();
     web3.eth.getCoinbase(function(err, account) {
       if(err === null) {
         App.account = account;
-        $("accountAddress").html("Your Account: " + account);
+        $("#accountAddress").html("Your Account: " + account);
       }
     });
     App.contracts.PokemonDApp.deployed().then(function(instance) {
@@ -55,13 +55,13 @@ App = {
 
           var temp = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + level + "</td></tr>";
           all_pokemons.append(temp);
-          console.log(name);
+          // console.log(name);
         });
       }
-      $("#loader").hide();
-      $("#content").show();
-      // loader.hide();
-      // content.show();
+      // $("#loader").hide();
+      // $("#content").show();
+      loader.hide();
+      content.show();
     }).catch(function(error) {
       console.warn(error);
     });
