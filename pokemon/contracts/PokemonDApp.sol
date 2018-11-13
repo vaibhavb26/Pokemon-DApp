@@ -9,6 +9,7 @@ contract PokemonDApp {
     }
     mapping (uint => pokemon) pokemons;
     uint pokemonCount = 0;
+    event newPokemon(uint id);
     // pokemons[0] = pokemon(0,1,"Squirtle"); 
     // pokemons[1] = pokemon(1,1,"Charmander");
     function addPokemon(string _name) private {
@@ -30,7 +31,7 @@ contract PokemonDApp {
         require(registered[msg.sender]!=true,"user already registered");
         playerCount++;
         playermap[playerCount] = msg.sender;
-        pokemonMap[msg.sender].push(pokemons[random(uint(3))+1]);
+        pokemonMap[msg.sender].push(pokemons[random(uint(3))]);
         registered[msg.sender] = true;
         return 1;
     }
@@ -44,6 +45,16 @@ contract PokemonDApp {
         return temp;
     }
     
+    function isRegistered() public view returns(bool) {
+        return registered[msg.sender];
+    }
+
+    function randomDrop() public {
+        uint rand = random(uint(3));
+        pokemonMap[msg.sender].push(pokemons[rand]);
+        newPokemon(rand);
+    }
+
     function random(uint num) public view returns(uint) {
         return uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)))%num;
     }
