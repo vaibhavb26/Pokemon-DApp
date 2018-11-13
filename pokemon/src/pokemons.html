@@ -19,27 +19,25 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   </head>
   <body>
-    <button id='register' onclick="App.register()">Register</button>
-    <div id='pokemons'>
-      <h1 class="text-center">Available Pokemons</h1>
-      <div id="loader">
-        <p class="text-center">Loading...</p>
-      </div>
-      <br>
-      <br>    
-      <div id="content" style="display: none;">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Level</th>
-            </tr>
-          </thead>
-          <tbody id="all_pokemons">
-          </tbody>
-        </table> 
-        <hr/>
+    <h1 class="text-center">Available Pokemons</h1>
+    <div id="loader">
+      <p class="text-center">Loading...</p>
     </div>
+    <br>
+    <br>    
+    <div id="content" style="display: none;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Level</th>
+          </tr>
+        </thead>
+        <tbody id="all_pokemons">
+        </tbody>
+      </table> 
+      <hr/>
       <p id="accountAddress" class="text-center"></p>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
