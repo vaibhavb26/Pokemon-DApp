@@ -10,6 +10,84 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  flex: 33.33%;
+  padding: 5px;
+
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+* {
+    box-sizing: border-box;
+}
+.row {
+    display: flex;
+}
+
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 50%;
+  font-size: 18px;
+}
+
+
+
+
+#wall {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 20%;
+  font-size: 18px;
+}
+#register {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 20%;
+  font-size: 18px;
+}
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,29 +96,58 @@
     <![endif]-->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   </head>
-  <body>
-    <button id='register' onclick="App.register()">Register</button>
-    <div id='pokemons'>
-      <h1 class="text-center">Available Pokemons</h1>
-      <div id="loader">
-        <p class="text-center">Loading...</p>
-      </div>
-      <br>
-      <br>    
-      <div id="content" style="display: none;">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Level</th>
-            </tr>
-          </thead>
-          <tbody id="all_pokemons">
-          </tbody>
-        </table> 
-        <hr/>
+  <body background="/images/background.jpg">
+    <div id = "pp">
+    <h1 class="text-center">PokemonGO</h1>
+    
     </div>
-      <p id="accountAddress" class="text-center"></p>
+    <p id="accountAddress" class="text-center"></p>
+   
+    <p><button id = "wall"  onclick = "App.wallet()">Wallet money</button></p>
+    <h1 class="text-center" id ="show1">My Pokemons</h1>
+    <div id="loader">
+      <p class="text-center">Loading...</p>
+    </div>
+    
+    
+    <!-- <p><button id = "wall" onclick = "App.withdraw()">withdraw money</button></p> -->
+    <br>
+    <br>    
+    <div id ="idpok" class ="row">
+    </div>
+    <br/>
+    <br/>
+
+    <h1 class="text-center" id ="show2">Catch Pokemons</h1>
+
+    <br/>
+    <br/>
+    <div id ="idpok1" class ="row">
+    </div>
+    
+
+    <h1 class="text-center" id ="show3">Pokemon Market</h1>
+
+    <br/>
+    <br/>
+    <div id ="idpok2" class ="row">
+    </div>
+    
+    <div id="content" style="display: none;">
+      <!-- <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Level</th>
+          </tr>
+        </thead>
+        <tbody id="all_pokemons">
+        </tbody>
+      </table> 
+      <hr/> -->
+      <button id = "register" onclick="App.register()" >Register</button>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
